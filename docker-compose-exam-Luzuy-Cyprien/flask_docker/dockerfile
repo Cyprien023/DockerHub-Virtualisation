@@ -1,0 +1,15 @@
+FROM python:latest
+
+COPY ./view.py /app.py
+
+WORKDIR /
+
+EXPOSE 5000
+
+RUN pip install -U Flask
+
+CMD [ "python3", "-m", "flask", "run", "--host=0.0.0.0" ]
+
+
+# docker build -t flask_docker .
+# docker run -p 5000:5000 -d flask_docker

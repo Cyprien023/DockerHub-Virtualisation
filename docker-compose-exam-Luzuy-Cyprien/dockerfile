@@ -1,0 +1,9 @@
+FROM nginx:latest
+COPY ./myapp/startbootstrap-agency-gh-pages /usr/share/nginx/html/
+ENV NAME ="Cyprien"
+
+#port 8080
+
+#docker build -t webserver .
+#docker run -it --rm -d -p 8080:80 --name web webserver
+

@@ -1,0 +1,80 @@
+version: '3.9'
+
+services:
+  web:
+    image: nginx
+
+    ports:
+    - "8081:80"
+    environment:
+    - NGINX_HOST=foobar.com
+    - NGINX_PORT=80
+
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=user
+      - POSTGRES_USER=user
+      - POSTGRES_DB=bd
+    volumes:
+      - volumebdd:/home/shared
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  volumebdd:
+
+
+
+# EXERCICE 6
+# docker compose up -d
+
+# EXERCICE 7
+# docker volume create volumebdd
+# docker compose up -d
+# docker exec -ti 26303bf3c129 sh     <--- container id de mariadb
+# cd /home/shared
+# ls
+# touch bonjour
+# ls
+#bonjour
+# exit
+# docker rm -f 927eaf402d23 6b15eb38399a 4924e2d35c79
+# docker compose up -d
+# docker exec -it f394cdc67673 sh    <--- container id de mariadb
+# # cd /home/shared
+# ls
+#bonjour
+
+# Le conteneur avec lequel le fichier bonjour a était crée à était supprimé. Le nouveau conteneur à toujours accées au fichier "bonjour" car le volume "volumebdd" la sauvegardé.
+
+
+
+
+
+
+  # db:
+  #   image: postgres
+  #   restart: always
+  #   shm_size: 128mb
+
+  #   environment:
+  #     - POSTGRES_PASSWORD=example
+  #     - POSTGRES_USER=user
+  #     - POSTGRES_DB=bd
+  #     volumes:
+  #     - volumebdd:/home/shared
+
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+
+
